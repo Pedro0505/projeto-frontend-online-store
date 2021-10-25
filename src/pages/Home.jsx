@@ -4,7 +4,13 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <input type="text" />
+        <input data-testid="query-input" type="text" />
+        <button
+          type="submit"
+          data-testid="query-button"
+        >
+          Buscar
+        </button>
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
