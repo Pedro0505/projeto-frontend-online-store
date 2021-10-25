@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 import * as api from '../services/api';
-import { Link } from 'react-router-dom';
 
 class Home extends Component {
   constructor() {
