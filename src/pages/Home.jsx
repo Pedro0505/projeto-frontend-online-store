@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
+import ListCategories from '../components/ListCategories';
 import * as api from '../services/api';
 
 class Home extends Component {
@@ -9,7 +10,12 @@ class Home extends Component {
     this.state = {
       search: '',
       products: [],
+      categories: [],
     };
+  }
+
+  componentDidMount() {
+    this.fetchCategories();
   }
 
   handleChange = ({ target: { value } }) => {
@@ -23,8 +29,15 @@ class Home extends Component {
     this.setState({ products });
   }
 
+  fetchCategories = async () => {
+    const response = await api.getCategories();
+    this.setState({
+      categories: response,
+    });
+  }
+
   render() {
-    const { search, products } = this.state;
+    const { search, products, categories } = this.state;
     return (
       <div>
         <input
@@ -46,6 +59,7 @@ class Home extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <ListCategories categories={ categories } />
         <div>
           <Link
             to="/CartPage"
