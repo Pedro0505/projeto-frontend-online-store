@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from '../components/Card';
 
 import * as api from '../services/api';
 
@@ -23,7 +24,7 @@ class Home extends Component {
   }
 
   render() {
-    const { search } = this.state;
+    const { search, products } = this.state;
     return (
       <div>
         <input
@@ -39,6 +40,9 @@ class Home extends Component {
         >
           Buscar
         </button>
+        { products.map((product) => (
+          <Card key={ product.id } product={ product } />
+        ))}
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
