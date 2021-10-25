@@ -4,8 +4,8 @@ import Card from '../components/Card';
 import * as api from '../services/api';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       search: '',
       products: [],
