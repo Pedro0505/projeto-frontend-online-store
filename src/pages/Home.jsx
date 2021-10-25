@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from '../components/Card';
-
 import * as api from '../services/api';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props) {
@@ -46,6 +46,14 @@ class Home extends Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
+        <div>
+          <Link
+            to="/CartPage"
+            data-testid="shopping-cart-button"
+          >
+            Botão
+          </Link>
+        </div>
       </div>
     );
   }
