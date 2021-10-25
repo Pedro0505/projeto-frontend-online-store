@@ -1,9 +1,9 @@
 .card {
-  box-shadow:5px 5px 5px rgba(0, 0, 0, 0.5);
-  width:300px;
-  padding:1em;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  padding: 1em;
+  width: 300px;
 }
 
 .card img {
-  width:100%;
+  width: 100%;
 }
