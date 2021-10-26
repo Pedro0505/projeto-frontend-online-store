@@ -11,6 +11,7 @@ class Home extends Component {
       search: '',
       products: [],
       categories: [],
+      cart: [],
     };
   }
 
@@ -30,7 +31,7 @@ class Home extends Component {
 
   handleSearch = async () => {
     const { search } = this.state;
-    const response = await api.getProductsFromCategoryAndQuery(search);
+    const response = await api.getProductsFromCategoryAndQuery('', search);
     const products = response.results;
     this.setState({ products });
   }
@@ -40,6 +41,10 @@ class Home extends Component {
     this.setState({
       categories: response,
     });
+  }
+
+  addCart = () => {
+    console.log('Teste');
   }
 
   render() {
@@ -66,7 +71,7 @@ class Home extends Component {
           <section>
             {
               products.map((product) => (
-                <Card key={ product.id } product={ product } />
+                <Card key={ product.id } product={ product } onClick={ this.addCart } />
               ))
             }
           </section>
