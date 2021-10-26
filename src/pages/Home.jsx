@@ -59,32 +59,38 @@ class Home extends Component {
         >
           Buscar
         </button>
-        {
-          products.map((product) => (
-            <Card key={ product.id } product={ product } />
-          ))
-        }
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <aside>
-          <h3>Lista de categorias</h3>
-          {
-            categories.map((e) => (
-              <ListCategories
-                name={ e.name }
-                key={ e.id }
-                id={ e.id }
-                getId={ this.getId }
-              />
-            ))
-          }
-        </aside>
-        {
-          itensCategorys !== undefined && itensCategorys.map((e) => (
-            <Card product={ e } key={ e.id } />
-          ))
-        }
+        <main>
+          <section>
+            {
+              products.map((product) => (
+                <Card key={ product.id } product={ product } />
+              ))
+            }
+          </section>
+          <aside>
+            <h3>Lista de categorias</h3>
+            {
+              categories.map((e) => (
+                <ListCategories
+                  name={ e.name }
+                  key={ e.id }
+                  id={ e.id }
+                  getId={ this.getId }
+                />
+              ))
+            }
+          </aside>
+          <section>
+            {
+              itensCategorys !== undefined && itensCategorys.map((e) => (
+                <Card product={ e } key={ e.id } />
+              ))
+            }
+          </section>
+        </main>
         <div>
           <Link
             to="/CartPage"

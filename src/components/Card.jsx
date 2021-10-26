@@ -10,7 +10,7 @@ class Card extends Component {
       <div className="card" data-testid="product">
         <h2>{product.title}</h2>
         <img src={ product.thumbnail } alt={ product.title } />
-        <p>{product.price}</p>
+        <p>{`R$: ${product.price}`}</p>
       </div>
     );
   }
