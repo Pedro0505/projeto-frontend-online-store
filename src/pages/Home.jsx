@@ -43,8 +43,10 @@ class Home extends Component {
     });
   }
 
-  addCart = () => {
-    console.log('Teste');
+  addCart = (product) => {
+    this.setState((prevState) => ({
+      cart: [...prevState.cart, product],
+    }));
   }
 
   render() {
@@ -71,7 +73,11 @@ class Home extends Component {
           <section>
             {
               products.map((product) => (
-                <Card key={ product.id } product={ product } onClick={ this.addCart } />
+                <Card
+                  key={ product.id }
+                  product={ product }
+                  onClick={ () => this.addCart(product) }
+                />
               ))
             }
           </section>
