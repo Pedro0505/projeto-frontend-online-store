@@ -30,7 +30,7 @@ class Home extends Component {
 
   handleSearch = async () => {
     const { search } = this.state;
-    const response = await api.getProductsFromCategoryAndQuery(search);
+    const response = await api.getProductsFromCategoryAndQuery('', search);
     const products = response.results;
     this.setState({ products });
   }
