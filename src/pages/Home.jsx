@@ -18,6 +18,12 @@ class Home extends Component {
     this.fetchCategories();
   }
 
+  getId = async ({ target }) => {
+    const DATA = await api.getProductsFromCategoryAndQuery(target.id);
+    const result = DATA.results;
+    this.setState({ itensCategorys: result });
+  }
+
   handleChange = ({ target: { value } }) => {
     this.setState({ search: value });
   }
@@ -37,7 +43,7 @@ class Home extends Component {
   }
 
   render() {
-    const { search, products, categories } = this.state;
+    const { search, products, categories, itensCategorys } = this.state;
     return (
       <div>
         <input
@@ -53,13 +59,32 @@ class Home extends Component {
         >
           Buscar
         </button>
-        { products.map((product) => (
-          <Card key={ product.id } product={ product } />
-        ))}
+        {
+          products.map((product) => (
+            <Card key={ product.id } product={ product } />
+          ))
+        }
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <ListCategories categories={ categories } />
+        <aside>
+          <h3>Lista de categorias</h3>
+          {
+            categories.map((e) => (
+              <ListCategories
+                name={ e.name }
+                key={ e.id }
+                id={ e.id }
+                getId={ this.getId }
+              />
+            ))
+          }
+        </aside>
+        {
+          itensCategorys !== undefined && itensCategorys.map((e) => (
+            <Card product={ e } key={ e.id } />
+          ))
+        }
         <div>
           <Link
             to="/CartPage"

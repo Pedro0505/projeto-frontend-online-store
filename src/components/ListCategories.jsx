@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 
 class ListCategories extends Component {
   render() {
-    const { categories } = this.props;
-
+    const { name, id, getId } = this.props;
     return (
       <div>
-        <h3>Lista de categorias</h3>
         <ul>
-          {categories.map(({ id, name }) => (
-            <li data-testid="category" key={ id }>{ name }</li>
-          ))}
+          <button id={ id } onClick={ getId } data-testid="category" type="button">
+            { name }
+          </button>
         </ul>
       </div>
     );
@@ -19,7 +17,9 @@ class ListCategories extends Component {
 }
 
 ListCategories.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  getId: PropTypes.func.isRequired,
 };
 
 export default ListCategories;
