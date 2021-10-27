@@ -4,33 +4,24 @@ import CartItem from '../components/CartItem';
 
 class Cart extends Component {
   render() {
-    const { products } = this.props;
-    console.log(products);
+    const { cart } = this.props;
+    console.log(cart);
     return (
       <div>
-        {
-          products.lenght >= 0 ? products.map((product) => <CartItem key={ product.id } product={ product } />)
-            : <h1 data-testid="shopping-cart-empty-message">
-              Seu carrinho está vazio
-              </h1>
-        }
+        <h1 data-testid="shopping-cart-empty-message">
+          Seu carrinho está vazio
+        </h1>
       </div>
     );
   }
 }
 
 Cart.defaultProps = {
-  history: {},
+  cart: [],
 };
 
 Cart.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape({
-      state: PropTypes.shape({
-        products: PropTypes.arrayOf(PropTypes.instanceOf(Object)),
-      }),
-    }),
-  }),
+  cart: PropTypes.arrayOf(Object),
 };
 
 export default Cart;
