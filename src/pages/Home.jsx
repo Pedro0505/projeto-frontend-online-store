@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
@@ -98,15 +99,8 @@ class Home extends Component {
         </main>
         <div>
           <Link
+            to="/CartPage"
             data-testid="shopping-cart-button"
-            to={
-              {
-                pathname: '/CartPage',
-                state: {
-                  products: cart,
-                },
-              }
-            }
           >
             Botão
           </Link>
@@ -115,5 +109,13 @@ class Home extends Component {
     );
   }
 }
+
+Home.defaultProps = {
+  addToCart: () => {},
+};
+
+Home.propTypes = {
+  addToCart: PropTypes.func,
+};
 
 export default Home;
