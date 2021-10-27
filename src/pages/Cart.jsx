@@ -10,7 +10,11 @@ class Cart extends Component {
         {
           cart.length > 0
             ? cart.map((cartItem) => (
-              <CartItem key={ cartItem.id } item={ cartItem } />
+              <CartItem
+                key={ cartItem.id }
+                item={ cartItem }
+                sumItems={ console.log(this.handleCartItems(cart, cartItem.id)) }
+              />
             )) : (
               <h1
                 data-testid="shopping-cart-empty-message"

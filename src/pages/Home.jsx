@@ -99,7 +99,7 @@ class Home extends Component {
         </main>
         <div>
           <Link
-            to="/CartPage"
+            to="/cart"
             data-testid="shopping-cart-button"
           >
             Botão
