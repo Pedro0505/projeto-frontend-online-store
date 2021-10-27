@@ -15,9 +15,12 @@ class App extends Component {
 
   addToCart = (product) => {
     const { cart } = this.state;
-    const isCart = cart.some((item) => item.id === product.id);
-    if (isCart) {
-      console.log(product);
+    const itemFound = cart.find((item) => item.id === product.id);
+    if (itemFound) {
+      const { quantity } = itemFound;
+      itemFound.quantity = quantity + 1;
+      const newCart = cart.filter((item) => item.id !== itemFound.id);
+      this.setState({ cart: [...newCart, itemFound] });
     } else {
       product = {
         ...product,

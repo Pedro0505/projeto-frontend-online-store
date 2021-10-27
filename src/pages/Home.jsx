@@ -22,7 +22,7 @@ class Home extends Component {
   getId = async ({ target }) => {
     const DATA = await api.getProductsFromCategoryAndQuery(target.id);
     const result = DATA.results;
-    this.setState({ itensCategorys: result });
+    this.setState({ products: result });
   }
 
   handleChange = ({ target: { value } }) => {
@@ -44,7 +44,7 @@ class Home extends Component {
   }
 
   render() {
-    const { search, products, categories, itensCategorys } = this.state;
+    const { search, products, categories } = this.state;
     const { addToCart } = this.props;
     return (
       <div>
@@ -89,13 +89,7 @@ class Home extends Component {
               ))
             }
           </aside>
-          <section>
-            {
-              itensCategorys !== undefined && itensCategorys.map((e) => (
-                <Card product={ e } key={ e.id } />
-              ))
-            }
-          </section>
+
         </main>
         <div>
           <Link
