@@ -13,7 +13,7 @@ class Cart extends Component {
               <CartItem
                 key={ cartItem.id }
                 item={ cartItem }
-                sumItems={ console.log(this.handleCartItems(cart, cartItem.id)) }
+
               />
             )) : (
               <h1
