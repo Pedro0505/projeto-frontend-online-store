@@ -14,12 +14,19 @@ class App extends Component {
   }
 
   addToCart = (product) => {
-    this.handleCart();
     const { cart } = this.state;
-
-    this.setState((prevState) => ({
-      cart: [...prevState.cart, product],
-    }));
+    const isCart = cart.some((item) => item.id === product.id);
+    if (isCart) {
+      console.log(product);
+    } else {
+      product = {
+        ...product,
+        quantity: 1,
+      };
+      this.setState((prevState) => ({
+        cart: [...prevState.cart, product],
+      }));
+    }
   }
 
   /** *
@@ -30,7 +37,7 @@ class App extends Component {
     const { cart } = this.state;
     const updatedCart = cart.map((itemCart) => ({
       ...itemCart,
-      quantity: 0,
+      quantity: 1,
     }));
     console.log(updatedCart);
     this.setState({ cart: updatedCart });
