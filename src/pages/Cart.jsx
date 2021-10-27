@@ -5,12 +5,19 @@ import CartItem from '../components/CartItem';
 class Cart extends Component {
   render() {
     const { cart } = this.props;
-    console.log(cart);
     return (
       <div>
-        <h1 data-testid="shopping-cart-empty-message">
-          Seu carrinho está vazio
-        </h1>
+        {
+          cart.length > 0
+            ? cart.map((cartItem) => (
+              <CartItem key={ cartItem.id } item={ cartItem } />
+            )) : (
+              <h1
+                data-testid="shopping-cart-empty-message"
+              >
+                <span>Seu carrinho está vazio</span>
+              </h1>)
+        }
       </div>
     );
   }
