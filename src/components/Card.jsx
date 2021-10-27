@@ -5,7 +5,7 @@ import './Card.css';
 
 class Card extends Component {
   render() {
-    const { product, onClick } = this.props;
+    const { product, addToCart } = this.props;
     return (
       <div className="card" data-testid="product">
         <h2>{product.title}</h2>
@@ -14,7 +14,7 @@ class Card extends Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ onClick }
+          onClick={ () => addToCart(product) }
         >
           Adicionar ao carrinho
 
@@ -25,12 +25,12 @@ class Card extends Component {
 }
 
 Card.defaultProps = {
-  onClick: () => {},
+  addToCart: () => {},
 };
 
 Card.propTypes = {
   product: PropTypes.instanceOf(Object).isRequired,
-  onClick: PropTypes.func,
+  addToCart: PropTypes.func,
 };
 
 export default Card;

@@ -11,7 +11,6 @@ class Home extends Component {
       search: '',
       products: [],
       categories: [],
-      cart: [],
     };
   }
 
@@ -43,14 +42,9 @@ class Home extends Component {
     });
   }
 
-  addCart = (product) => {
-    this.setState((prevState) => ({
-      cart: [...prevState.cart, product],
-    }));
-  }
-
   render() {
     const { search, products, categories, itensCategorys } = this.state;
+    const { addToCart } = this.props;
     return (
       <div>
         <input
@@ -76,7 +70,7 @@ class Home extends Component {
                 <Card
                   key={ product.id }
                   product={ product }
-                  onClick={ () => this.addCart(product) }
+                  addToCart={ addToCart }
                 />
               ))
             }
@@ -104,8 +98,15 @@ class Home extends Component {
         </main>
         <div>
           <Link
-            to="/CartPage"
             data-testid="shopping-cart-button"
+            to={
+              {
+                pathname: '/CartPage',
+                state: {
+                  products: cart,
+                },
+              }
+            }
           >
             Botão
           </Link>
