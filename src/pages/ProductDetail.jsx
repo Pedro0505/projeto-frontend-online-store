@@ -68,7 +68,10 @@ class ProductDetail extends Component {
           ))
         }
         <EvaluationForm id={ id } updateEvaluations={ this.updateEvaluations } />
-        { evaluations.map((evaluation, index) => <ShowEvaluation key={ index } evaluation={ evaluation } />) }
+        { evaluations.map((evaluation, index) => (<ShowEvaluation
+          key={ index }
+          evaluation={ evaluation }
+        />)) }
       </div>
     );
   }
