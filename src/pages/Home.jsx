@@ -65,17 +65,14 @@ class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <main>
-          <section>
-            {
-              products.map((product) => (
-                <Card
-                  key={ product.id }
-                  product={ product }
-                  addToCart={ addToCart }
-                />
-              ))
-            }
-          </section>
+          <div>
+            <Link
+              to="/cart"
+              data-testid="shopping-cart-button"
+            >
+              Botão
+            </Link>
+          </div>
           <aside>
             <h3>Lista de categorias</h3>
             {
@@ -89,16 +86,18 @@ class Home extends Component {
               ))
             }
           </aside>
-
+          <section>
+            {
+              products.map((product) => (
+                <Card
+                  key={ product.id }
+                  product={ product }
+                  addToCart={ addToCart }
+                />
+              ))
+            }
+          </section>
         </main>
-        <div>
-          <Link
-            to="/cart"
-            data-testid="shopping-cart-button"
-          >
-            Botão
-          </Link>
-        </div>
       </div>
     );
   }
