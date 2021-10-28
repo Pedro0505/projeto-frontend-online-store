@@ -32,9 +32,9 @@ class App extends Component {
     }
   }
 
-  /** *
-   * Esta função altera os objetos dentro do estado
-   * adicionando um atributo quantidade:0
+  /*
+    Esta função altera os objetos dentro do estado
+    adicionando um atributo quantidade:0
    */
   handleCart = () => {
     const { cart } = this.state;
@@ -42,7 +42,6 @@ class App extends Component {
       ...itemCart,
       quantity: 1,
     }));
-    console.log(updatedCart);
     this.setState({ cart: updatedCart });
   }
 
@@ -64,10 +63,9 @@ class App extends Component {
               render={ (props) => (<Cart
                 { ...props }
                 cart={ cart }
-                addToCart={ this.addToCart }
               />) }
             />
-            <Route path="/checkout" exact component={ FormPay } />
+            <Route path="/checkout" exact render={ () => <FormPay cart={ cart } /> } />
             <Route path="/product-detail/:id" exact component={ ProductDetail } />
           </Switch>
         </BrowserRouter>
