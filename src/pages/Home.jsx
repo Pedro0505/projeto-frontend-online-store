@@ -70,7 +70,7 @@ class Home extends Component {
               to="/cart"
               data-testid="shopping-cart-button"
             >
-              Botão
+              Carrinho
             </Link>
           </div>
           <aside>
