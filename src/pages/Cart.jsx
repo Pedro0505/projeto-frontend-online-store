@@ -3,21 +3,44 @@ import React, { Component } from 'react';
 
 class Cart extends Component {
   render() {
-    const { cart } = this.props;
+    const { cart, addToCart, decreaseCart, removeCart } = this.props;
     return (
       <div>
-        { cart.length > 0 ? (cart.map((item) => (
+        {cart.length > 0 ? (cart.map((item) => (
           <div key={ item.id }>
             <h2
               data-testid="shopping-cart-product-name"
             >
-              { item.title }
+              {item.title}
             </h2>
             <p
               data-testid="shopping-cart-product-quantity"
             >
-              { item.quantity }
+              {item.quantity}
             </p>
+            <div>
+              <button
+                type="button"
+                data-testid="product-increase-quantity"
+                onClick={ () => addToCart(item) }
+              >
+                +
+              </button>
+              <button
+                type="button"
+                data-testid="product-decrease-quantity"
+                onClick={ () => decreaseCart(item) }
+              >
+                -
+              </button>
+              <button
+                type="button"
+                data-testid="product-exclude"
+                onClick={ () => removeCart(item) }
+              >
+                Remover
+              </button>
+            </div>
           </div>
         ))) : (
           <div>
@@ -39,6 +62,9 @@ Cart.defaultProps = {
 
 Cart.propTypes = {
   cart: PropTypes.arrayOf(Object),
+  addToCart: PropTypes.func.isRequired,
+  removeCart: PropTypes.func.isRequired,
+  decreaseCart: PropTypes.func.isRequired,
 };
 
 export default Cart;
