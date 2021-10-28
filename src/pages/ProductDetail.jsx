@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import getById from '../services/getById';
 import Info from '../components/Info';
@@ -59,7 +60,7 @@ class ProductDetail extends Component {
 
   render() {
     const { details, evaluations } = this.state;
-    const { match: { params: { id } } } = this.props;
+    const { match: { params: { id } }, addToCart } = this.props;
     return (
       <div>
         {
@@ -67,6 +68,20 @@ class ProductDetail extends Component {
             <Info key={ e.body } product={ e.body } />
           ))
         }
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => addToCart(details[0].body) }
+        >
+          Adicionar ao Carrinho
+
+        </button>
+        <Link
+          to="/cart"
+          data-testid="shopping-cart-button"
+        >
+          Carrinho
+        </Link>
         <EvaluationForm id={ id } updateEvaluations={ this.updateEvaluations } />
         { evaluations.map((evaluation, index) => (<ShowEvaluation
           key={ index }
@@ -79,6 +94,7 @@ class ProductDetail extends Component {
 
 ProductDetail.propTypes = {
   match: PropTypes.instanceOf(Object).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductDetail;

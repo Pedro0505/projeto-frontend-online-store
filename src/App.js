@@ -66,7 +66,12 @@ class App extends Component {
               />) }
             />
             <Route path="/checkout" exact render={ () => <FormPay cart={ cart } /> } />
-            <Route path="/product-detail/:id" exact component={ ProductDetail } />
+            <Route
+              path="/product-detail/:id"
+              exact
+              render={ (props) => (
+                <ProductDetail { ...props } addToCart={ this.addToCart } />) }
+            />
           </Switch>
         </BrowserRouter>
       </div>
