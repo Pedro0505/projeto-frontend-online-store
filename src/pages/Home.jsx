@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
@@ -21,7 +22,7 @@ class Home extends Component {
   getId = async ({ target }) => {
     const DATA = await api.getProductsFromCategoryAndQuery(target.id);
     const result = DATA.results;
-    this.setState({ itensCategorys: result });
+    this.setState({ products: result });
   }
 
   handleChange = ({ target: { value } }) => {
@@ -43,7 +44,8 @@ class Home extends Component {
   }
 
   render() {
-    const { search, products, categories, itensCategorys } = this.state;
+    const { search, products, categories } = this.state;
+    const { addToCart } = this.props;
     return (
       <div>
         <input
@@ -63,13 +65,14 @@ class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <main>
-          <section>
-            {
-              products.map((product) => (
-                <Card key={ product.id } product={ product } />
-              ))
-            }
-          </section>
+          <div>
+            <Link
+              to="/cart"
+              data-testid="shopping-cart-button"
+            >
+              Botão
+            </Link>
+          </div>
           <aside>
             <h3>Lista de categorias</h3>
             {
@@ -85,23 +88,27 @@ class Home extends Component {
           </aside>
           <section>
             {
-              itensCategorys !== undefined && itensCategorys.map((e) => (
-                <Card product={ e } key={ e.id } />
+              products.map((product) => (
+                <Card
+                  key={ product.id }
+                  product={ product }
+                  addToCart={ addToCart }
+                />
               ))
             }
           </section>
         </main>
-        <div>
-          <Link
-            to="/CartPage"
-            data-testid="shopping-cart-button"
-          >
-            Botão
-          </Link>
-        </div>
       </div>
     );
   }
 }
+
+Home.defaultProps = {
+  addToCart: () => {},
+};
+
+Home.propTypes = {
+  addToCart: PropTypes.func,
+};
 
 export default Home;

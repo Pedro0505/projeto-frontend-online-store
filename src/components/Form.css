@@ -1,3 +1,7 @@
 .input {
   border: 2px solid red;
 }
+
+.inputValid {
+  border: 2px solid black;
+}

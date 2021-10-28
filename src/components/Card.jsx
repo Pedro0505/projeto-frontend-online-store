@@ -6,21 +6,36 @@ import './Card.css';
 
 class Card extends Component {
   render() {
-    const { product } = this.props;
+    const { product, addToCart } = this.props;
     return (
-      <Link to={ `/product-detail/${product.id}` } data-testid="product-detail-link">
-        <div className="card" data-testid="product">
-          <h2>{product.title}</h2>
-          <img src={ product.thumbnail } alt={ product.title } />
-          <p>{`R$: ${product.price}`}</p>
-        </div>
-      </Link>
+      <section>
+        <Link to={ `/product-detail/${product.id}` } data-testid="product-detail-link">
+          <div className="card" data-testid="product">
+            <h2>{product.title}</h2>
+            <img src={ product.thumbnail } alt={ product.title } />
+            <p>{`R$: ${product.price}`}</p>
+          </div>
+        </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => addToCart(product) }
+        >
+          Adicionar ao carrinho
+
+        </button>
+      </section>
     );
   }
 }
 
+Card.defaultProps = {
+  addToCart: () => {},
+};
+
 Card.propTypes = {
   product: PropTypes.instanceOf(Object).isRequired,
+  addToCart: PropTypes.func,
 };
 
 export default Card;
