@@ -32,19 +32,6 @@ class App extends Component {
     }
   }
 
-  /*
-    Esta função altera os objetos dentro do estado
-    adicionando um atributo quantidade:0
-   */
-  handleCart = () => {
-    const { cart } = this.state;
-    const updatedCart = cart.map((itemCart) => ({
-      ...itemCart,
-      quantity: 1,
-    }));
-    this.setState({ cart: updatedCart });
-  }
-
   render() {
     const { cart } = this.state;
     return (
