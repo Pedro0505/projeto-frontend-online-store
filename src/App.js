@@ -13,6 +13,27 @@ class App extends Component {
     };
   }
 
+  removeCart = (product) => {
+    const { cart } = this.state;
+    const itemFound = cart.find((item) => item.id === product.id);
+    const newCart = cart.filter((item) => item.id !== itemFound.id);
+    this.setState({ cart: newCart });
+  }
+
+  decreaseCart = (product) => {
+    const { cart } = this.state;
+    const itemFound = cart.find((item) => item.id === product.id);
+    if (itemFound) {
+      const { quantity } = itemFound;
+      if (quantity === 1) {
+        return;
+      }
+      itemFound.quantity = quantity - 1;
+      const newCart = cart.filter((item) => item.id !== itemFound.id);
+      this.setState({ cart: [...newCart, itemFound] });
+    }
+  }
+
   addToCart = (product) => {
     const { cart } = this.state;
     const itemFound = cart.find((item) => item.id === product.id);
@@ -50,6 +71,9 @@ class App extends Component {
               render={ (props) => (<Cart
                 { ...props }
                 cart={ cart }
+                addToCart={ this.addToCart }
+                decreaseCart={ this.decreaseCart }
+                removeCart={ this.removeCart }
               />) }
             />
             <Route path="/checkout" exact render={ () => <FormPay cart={ cart } /> } />
