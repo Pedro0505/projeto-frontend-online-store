@@ -13,43 +13,56 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.initialState();
+  }
+
+  initialState = () => {
+    const localCart = localStorage.getItem('cart');
+    const cart = localCart ? JSON.parse(localCart) : [];
+    this.setState({ cart });
+  }
+
   removeCart = (product) => {
-    const { cart } = this.state;
+    const cart = JSON.parse(localStorage.getItem('cart'));
     const itemFound = cart.find((item) => item.id === product.id);
     const newCart = cart.filter((item) => item.id !== itemFound.id);
+    localStorage.setItem('cart', JSON.stringify(newCart));
     this.setState({ cart: newCart });
   }
 
   decreaseCart = (product) => {
-    const { cart } = this.state;
+    const cart = JSON.parse(localStorage.getItem('cart'));
     const itemFound = cart.find((item) => item.id === product.id);
     if (itemFound) {
       const { quantity } = itemFound;
-      if (quantity === 1) {
-        return;
+      if (quantity > 1) {
+        const index = cart.findIndex((x) => x.id === itemFound.id);
+        cart[index].quantity = quantity - 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        this.setState({ cart });
       }
-      itemFound.quantity = quantity - 1;
-      const newCart = cart.filter((item) => item.id !== itemFound.id);
-      this.setState({ cart: [...newCart, itemFound] });
     }
   }
 
   addToCart = (product) => {
-    const { cart } = this.state;
+    const localCart = localStorage.getItem('cart');
+    const cart = localCart ? JSON.parse(localCart) : [];
     const itemFound = cart.find((item) => item.id === product.id);
     if (itemFound) {
       const { quantity } = itemFound;
-      itemFound.quantity = quantity + 1;
-      const newCart = cart.filter((item) => item.id !== itemFound.id);
-      this.setState({ cart: [...newCart, itemFound] });
+      itemFound.quantity = Number(quantity) + 1;
+      const index = cart.findIndex((x) => x.id === itemFound.id);
+      cart[index].quantity = quantity + 1;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.setState({ cart });
     } else {
       product = {
         ...product,
         quantity: 1,
       };
-      this.setState((prevState) => ({
-        cart: [...prevState.cart, product],
-      }));
+      localStorage.setItem('cart', JSON.stringify([...cart, product]));
+      this.setState({ cart: [...cart, product] });
     }
   }
 
