@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
+import CartLength from '../components/CartLength';
 import ListCategories from '../components/ListCategories';
 import * as api from '../services/api';
 
@@ -45,9 +46,10 @@ class Home extends Component {
 
   render() {
     const { search, products, categories } = this.state;
-    const { addToCart } = this.props;
+    const { addToCart, totalQuantity } = this.props;
     return (
       <div>
+        <CartLength totalQuantity={ totalQuantity } />
         <input
           data-testid="query-input"
           type="text"
@@ -109,6 +111,7 @@ Home.defaultProps = {
 
 Home.propTypes = {
   addToCart: PropTypes.func,
+  totalQuantity: PropTypes.number.isRequired,
 };
 
 export default Home;
