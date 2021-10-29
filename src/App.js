@@ -10,11 +10,13 @@ class App extends Component {
     super();
     this.state = {
       cart: [],
+      totalQuantity: 0,
     };
   }
 
   componentDidMount() {
     this.initialState();
+    this.calculatorItens();
   }
 
   initialState = () => {
@@ -23,12 +25,21 @@ class App extends Component {
     this.setState({ cart });
   }
 
+  calculatorItens = () => {
+    const localCart = localStorage.getItem('cart');
+    const cart = localCart ? JSON.parse(localCart) : [];
+    const t = cart.map((e) => e.quantity);
+    const a = t.reduce((acc, cur) => acc + cur, 0);
+    this.setState({ totalQuantity: a });
+  }
+
   removeCart = (product) => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const itemFound = cart.find((item) => item.id === product.id);
     const newCart = cart.filter((item) => item.id !== itemFound.id);
     localStorage.setItem('cart', JSON.stringify(newCart));
     this.setState({ cart: newCart });
+    this.calculatorItens();
   }
 
   decreaseCart = (product) => {
@@ -43,6 +54,7 @@ class App extends Component {
         this.setState({ cart });
       }
     }
+    this.calculatorItens();
   }
 
   addToCart = (product) => {
@@ -64,10 +76,11 @@ class App extends Component {
       localStorage.setItem('cart', JSON.stringify([...cart, product]));
       this.setState({ cart: [...cart, product] });
     }
+    this.calculatorItens();
   }
 
   render() {
-    const { cart } = this.state;
+    const { cart, totalQuantity } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -76,7 +89,11 @@ class App extends Component {
               exact
               path="/"
               render={ (props) => (
-                <Home { ...props } addToCart={ this.addToCart } />) }
+                <Home
+                  { ...props }
+                  addToCart={ this.addToCart }
+                  totalQuantity={ totalQuantity }
+                />) }
             />
             <Route
               exact
@@ -94,7 +111,11 @@ class App extends Component {
               path="/product-detail/:id"
               exact
               render={ (props) => (
-                <ProductDetail { ...props } addToCart={ this.addToCart } />) }
+                <ProductDetail
+                  { ...props }
+                  addToCart={ this.addToCart }
+                  totalQuantity={ totalQuantity }
+                />) }
             />
           </Switch>
         </BrowserRouter>

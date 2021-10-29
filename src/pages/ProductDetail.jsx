@@ -5,6 +5,7 @@ import getById from '../services/getById';
 import Info from '../components/Info';
 import EvaluationForm from '../components/EvaluationForm';
 import ShowEvaluation from '../components/ShowEvaluation';
+import CartLength from '../components/CartLength';
 
 class ProductDetail extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class ProductDetail extends Component {
   }
 
   componentDidMount() {
-    this.teste();
+    this.recoveryIdContent();
     this.loadEvaluations();
   }
 
@@ -27,7 +28,7 @@ class ProductDetail extends Component {
     }
   }
 
-  teste = async () => {
+  recoveryIdContent = async () => {
     const { match: { params: { id } } } = this.props;
     const DATA = await getById(id);
     this.setState({ details: DATA });
@@ -60,9 +61,10 @@ class ProductDetail extends Component {
 
   render() {
     const { details, evaluations } = this.state;
-    const { match: { params: { id } }, addToCart } = this.props;
+    const { match: { params: { id } }, addToCart, totalQuantity } = this.props;
     return (
       <div>
+        <CartLength totalQuantity={ totalQuantity } />
         {
           Array.isArray(details) && details.map((e) => (
             <Info key={ e.body } product={ e.body } />
@@ -95,6 +97,7 @@ class ProductDetail extends Component {
 ProductDetail.propTypes = {
   match: PropTypes.instanceOf(Object).isRequired,
   addToCart: PropTypes.func.isRequired,
+  totalQuantity: PropTypes.number.isRequired,
 };
 
 export default ProductDetail;
