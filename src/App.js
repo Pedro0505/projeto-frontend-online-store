@@ -28,9 +28,8 @@ class App extends Component {
   calculatorItens = () => {
     const localCart = localStorage.getItem('cart');
     const cart = localCart ? JSON.parse(localCart) : [];
-    const t = cart.map((e) => e.quantity);
-    const a = t.reduce((acc, cur) => acc + cur, 0);
-    this.setState({ totalQuantity: a });
+    const catchNumber = cart.map((e) => e.quantity).reduce((acc, cur) => acc + cur, 0);
+    this.setState({ totalQuantity: catchNumber });
   }
 
   removeCart = (product) => {

@@ -24,6 +24,7 @@ class Cart extends Component {
                 type="button"
                 data-testid="product-increase-quantity"
                 onClick={ () => addToCart(item) }
+                disabled={ item.available_quantity === item.quantity }
               >
                 +
               </button>
