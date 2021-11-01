@@ -39,7 +39,6 @@ class ProductDetail extends Component {
 
     const evaluationsString = sessionStorage.getItem(id);
     const evaluations = JSON.parse(evaluationsString);
-    console.log(evaluations);
     if (evaluations !== null) {
       this.setState({
         evaluations,
