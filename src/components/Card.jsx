@@ -8,7 +8,7 @@ class Card extends Component {
   render() {
     const { product, addToCart, product: { shipping } } = this.props;
     return (
-      <section>
+      <>
         <Link to={ `/product-detail/${product.id}` } data-testid="product-detail-link">
           <div className="card" data-testid="product">
             <h2>{product.title}</h2>
@@ -27,7 +27,7 @@ class Card extends Component {
           Adicionar ao carrinho
 
         </button>
-      </section>
+      </>
     );
   }
 }

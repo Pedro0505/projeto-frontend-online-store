@@ -51,56 +51,54 @@ class Home extends Component {
     const { products, categories } = this.state;
     const { addToCart, totalQuantity } = this.props;
     return (
-      <div>
-        <input
-          data-testid="query-input"
-          type="text"
-          onChange={ this.handleChange }
-          placeholder="Digite algum termo de pesquisa"
-        />
-        <button
-          type="submit"
-          data-testid="query-button"
-          onClick={ this.handleSearch }
-        >
-          <Search />
-        </button>
-        <main>
+      <main>
+        <header>
+          <input
+            data-testid="query-input"
+            type="text"
+            onChange={ this.handleChange }
+            placeholder="Digite algum termo de pesquisa"
+          />
+          <button
+            type="submit"
+            data-testid="query-button"
+            onClick={ this.handleSearch }
+          >
+            <Search />
+          </button>
           <CartLength totalQuantity={ totalQuantity } />
-          <div>
-            <Link
-              to="/cart"
-              data-testid="shopping-cart-button"
-            >
-              <ShoppingCartIcon style={ { color: 'black' } } />
-            </Link>
-          </div>
-          <aside>
-            <h3>Lista de categorias</h3>
-            {
-              categories.map((e) => (
-                <ListCategories
-                  name={ e.name }
-                  key={ e.id }
-                  id={ e.id }
-                  getId={ this.getId }
-                />
-              ))
-            }
-          </aside>
-          <section>
-            {
-              products.map((product) => (
-                <Card
-                  key={ product.id }
-                  product={ product }
-                  addToCart={ addToCart }
-                />
-              ))
-            }
-          </section>
-        </main>
-      </div>
+          <Link
+            to="/cart"
+            data-testid="shopping-cart-button"
+          >
+            <ShoppingCartIcon style={ { color: 'black' } } />
+          </Link>
+        </header>
+        <aside>
+          <h3>Lista de categorias</h3>
+          {
+            categories.map((e) => (
+              <ListCategories
+                name={ e.name }
+                key={ e.id }
+                id={ e.id }
+                getId={ this.getId }
+              />
+            ))
+          }
+        </aside>
+        <section>
+          {
+            products.map((product) => (
+              <Card
+                key={ product.id }
+                product={ product }
+                addToCart={ addToCart }
+              />
+            ))
+          }
+        </section>
+      </main>
     );
   }
 }

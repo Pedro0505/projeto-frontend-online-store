@@ -82,49 +82,47 @@ class App extends Component {
   render() {
     const { cart, totalQuantity } = this.state;
     return (
-      <div className="App">
-        <BrowserRouter>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              component={ Login }
-            />
-            <Route
-              exact
-              path="/home"
-              render={ (props) => (
-                <Home
-                  { ...props }
-                  addToCart={ this.addToCart }
-                  totalQuantity={ totalQuantity }
-                />) }
-            />
-            <Route
-              exact
-              path="/cart"
-              render={ (props) => (<Cart
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={ Login }
+          />
+          <Route
+            exact
+            path="/home"
+            render={ (props) => (
+              <Home
                 { ...props }
-                cart={ cart }
                 addToCart={ this.addToCart }
-                decreaseCart={ this.decreaseCart }
-                removeCart={ this.removeCart }
+                totalQuantity={ totalQuantity }
               />) }
-            />
-            <Route path="/checkout" exact render={ () => <FormPay cart={ cart } /> } />
-            <Route
-              path="/product-detail/:id"
-              exact
-              render={ (props) => (
-                <ProductDetail
-                  { ...props }
-                  addToCart={ this.addToCart }
-                  totalQuantity={ totalQuantity }
-                />) }
-            />
-          </Switch>
-        </BrowserRouter>
-      </div>
+          />
+          <Route
+            exact
+            path="/cart"
+            render={ (props) => (<Cart
+              { ...props }
+              cart={ cart }
+              addToCart={ this.addToCart }
+              decreaseCart={ this.decreaseCart }
+              removeCart={ this.removeCart }
+            />) }
+          />
+          <Route path="/checkout" exact render={ () => <FormPay cart={ cart } /> } />
+          <Route
+            path="/product-detail/:id"
+            exact
+            render={ (props) => (
+              <ProductDetail
+                { ...props }
+                addToCart={ this.addToCart }
+                totalQuantity={ totalQuantity }
+              />) }
+          />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

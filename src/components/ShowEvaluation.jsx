@@ -8,7 +8,6 @@ class ShowEvaluation extends React.Component {
       <div>
         <span>{ name }</span>
         <span>
-          {' '}
           { rating }
         </span>
         <p>{ evaluationText }</p>
