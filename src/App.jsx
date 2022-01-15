@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import FormPay from './components/FormPay';
+import Login from './pages/Login';
 import Cart from './pages/Cart';
 
 class App extends Component {
@@ -87,6 +88,11 @@ class App extends Component {
             <Route
               exact
               path="/"
+              component={ Login }
+            />
+            <Route
+              exact
+              path="/home"
               render={ (props) => (
                 <Home
                   { ...props }

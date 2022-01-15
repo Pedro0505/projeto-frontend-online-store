@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import FreeShipping from './FreeShipping';
-
-import './Card.css';
+import '../styles/Card.css';
 
 class Card extends Component {
   render() {

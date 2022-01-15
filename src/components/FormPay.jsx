@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Form.css';
+import '../styles/Form.css';
 
 class FormPay extends Component {
   removeEspecialChar = (e) => {

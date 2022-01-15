@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Search from '@material-ui/icons/Search';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Card from '../components/Card';
 import CartLength from '../components/CartLength';
 import ListCategories from '../components/ListCategories';
@@ -10,7 +12,7 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      search: '',
+      search: 'Computador',
       products: [],
       categories: [],
     };
@@ -18,6 +20,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.fetchCategories();
+    this.handleSearch();
   }
 
   getId = async ({ target }) => {
@@ -45,34 +48,31 @@ class Home extends Component {
   }
 
   render() {
-    const { search, products, categories } = this.state;
+    const { products, categories } = this.state;
     const { addToCart, totalQuantity } = this.props;
     return (
       <div>
-        <CartLength totalQuantity={ totalQuantity } />
         <input
           data-testid="query-input"
           type="text"
-          value={ search }
           onChange={ this.handleChange }
+          placeholder="Digite algum termo de pesquisa"
         />
         <button
           type="submit"
           data-testid="query-button"
           onClick={ this.handleSearch }
         >
-          Buscar
+          <Search />
         </button>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
         <main>
+          <CartLength totalQuantity={ totalQuantity } />
           <div>
             <Link
               to="/cart"
               data-testid="shopping-cart-button"
             >
-              Carrinho
+              <ShoppingCartIcon style={ { color: 'black' } } />
             </Link>
           </div>
           <aside>
