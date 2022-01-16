@@ -24,10 +24,11 @@ class EvaluationForm extends Component {
     const { name, evaluationText, rating } = this.state;
     const newEvaluation = { name, rating, evaluationText };
     updateEvaluations(newEvaluation);
+    this.setState({ evaluation: '', user: '' });
   }
 
   render() {
-    const { email, evaluation } = this.state;
+    const { user, evaluation } = this.state;
     return (
       <form>
         <input
@@ -35,7 +36,7 @@ class EvaluationForm extends Component {
           name="name"
           placeholder="Nome"
           onChange={ this.handleChange }
-          value={ email }
+          value={ user }
         />
         <label htmlFor="1">
           1
@@ -95,7 +96,14 @@ class EvaluationForm extends Component {
           onChange={ this.handleChange }
           value={ evaluation }
         />
-        <button type="button" name="e" onClick={ this.saveEvaluation }>Avaliar</button>
+        <button
+          type="button"
+          name="evaluationRating"
+          onClick={ this.saveEvaluation }
+        >
+          Avaliar
+
+        </button>
       </form>
     );
   }

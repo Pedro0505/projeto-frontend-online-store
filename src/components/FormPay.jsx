@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/Form.css';
 
 class FormPay extends Component {
-  removeEspecialChar = (e) => {
-    const exp = /[0-9a-zA-Z ]/gi;
-    if (!exp.test(e.key)) {
-      e.target.className = 'input';
-    } else {
-      e.target.className = 'inputValid';
-    }
-  }
-
   render() {
     const { cart } = this.props;
     return (
@@ -30,7 +20,7 @@ class FormPay extends Component {
                 { item.quantity }
               </p>
               <p>
-                { `R$${item.price}` }
+                { `R$${item.price * item.quantity}` }
               </p>
             </div>
           )))

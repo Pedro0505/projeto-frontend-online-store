@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import getById from '../services/getById';
 import Info from '../components/Info';
@@ -77,17 +76,13 @@ class ProductDetail extends Component {
           Adicionar ao Carrinho
 
         </button>
-        <Link
-          to="/cart"
-          data-testid="shopping-cart-button"
-        >
-          Carrinho
-        </Link>
         <EvaluationForm id={ id } updateEvaluations={ this.updateEvaluations } />
-        { evaluations.map((evaluation, index) => (<ShowEvaluation
-          key={ index }
-          evaluation={ evaluation }
-        />)) }
+        { evaluations.map((evaluation, index) => (
+          <ShowEvaluation
+            key={ index }
+            evaluation={ evaluation }
+          />
+        )) }
       </div>
     );
   }

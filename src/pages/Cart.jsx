@@ -14,6 +14,8 @@ class Cart extends Component {
             >
               {item.title}
             </h2>
+            <p>{ item.price * item.quantity }</p>
+            <img src={ item.thumbnail } alt={ item.title } />
             <p
               data-testid="shopping-cart-product-quantity"
             >

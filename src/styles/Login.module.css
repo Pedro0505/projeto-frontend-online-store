@@ -1,0 +1,64 @@
+:root {
+
+  --color-btn: #2968c8;
+}
+
+.mainLogin {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.imageContainer {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 45%;
+}
+
+.mainLogin .imageContainer img {
+  height: 45vw;
+  margin-left: 50px;
+  width: 45vw;
+}
+
+.mainLogin form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.mainLogin form button {
+  align-items: center;
+  background-color: var(--color-btn);
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  padding: 10px;
+  width: 250px;
+}
+
+.mainLogin form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainLogin form label:nth-child( 2 ) {
+  margin-top: 10px;
+}
+
+.mainLogin form label p {
+  margin-bottom: 10px;
+}
+
+.mainLogin form label input {
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  height: 40px;
+  padding: 5px;
+  width: 250px;
+}

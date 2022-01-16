@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import FreeShipping from './FreeShipping';
-import '../styles/Card.css';
 
 class Card extends Component {
   render() {
@@ -10,7 +9,7 @@ class Card extends Component {
     return (
       <>
         <Link to={ `/product-detail/${product.id}` } data-testid="product-detail-link">
-          <div className="card" data-testid="product">
+          <div data-testid="product">
             <h2>{product.title}</h2>
             <img src={ product.thumbnail } alt={ product.title } />
             <p>{`R$: ${product.price}`}</p>
