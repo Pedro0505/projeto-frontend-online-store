@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
-import FormPay from './components/FormPay';
+import FormPay from './pages/FormPay';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
 import './styles/Main.css';
+import Header from './components/Header';
 
 class App extends Component {
   constructor() {
@@ -125,6 +126,7 @@ class App extends Component {
             />) }
           />
           <Route path="/checkout" exact render={ () => <FormPay cart={ cart } /> } />
+          <Route path="/profile" exact component={ Header } />
           <Route
             path="/product-detail/:id"
             exact

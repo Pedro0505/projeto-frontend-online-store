@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import styles from '../styles/Home.module.css';
 
 class FreeShipping extends Component {
   render() {
     return (
-      <div>
-        <p data-testid="free-shipping"> Frete Grátis </p>
-      </div>
+      <p className={ styles.freeShipping } data-testid="free-shipping"> Frete Grátis </p>
     );
   }
 }

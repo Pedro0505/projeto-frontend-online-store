@@ -5,6 +5,7 @@ import Info from '../components/Info';
 import EvaluationForm from '../components/EvaluationForm';
 import ShowEvaluation from '../components/ShowEvaluation';
 import CartLength from '../components/CartLength';
+import Header from '../components/Header';
 
 class ProductDetail extends Component {
   constructor() {
@@ -62,6 +63,7 @@ class ProductDetail extends Component {
     const { match: { params: { id } }, addToCart, totalQuantity } = this.props;
     return (
       <div>
+        <Header />
         <CartLength totalQuantity={ totalQuantity } />
         {
           Array.isArray(details) && details.map((e) => (

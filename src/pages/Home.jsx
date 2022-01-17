@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
 import ListCategories from '../components/ListCategories';
 import * as api from '../services/api';
+import styles from '../styles/Home.module.css';
 
 class Home extends Component {
   constructor() {
@@ -46,48 +46,40 @@ class Home extends Component {
 
   render() {
     const { products, categories } = this.state;
-    const { addToCart } = this.props;
     return (
       <main>
         <Header
           handleChange={ this.handleChange }
           handleSearch={ this.handleSearch }
         />
-        <aside>
-          <h3>Lista de categorias</h3>
-          {
-            categories.map((e) => (
-              <ListCategories
-                name={ e.name }
-                key={ e.id }
-                id={ e.id }
-                getId={ this.getId }
-              />
-            ))
-          }
-        </aside>
-        <section>
-          {
-            products.map((product) => (
-              <Card
-                key={ product.id }
-                product={ product }
-                addToCart={ addToCart }
-              />
-            ))
-          }
+        <section className={ styles.containerHome }>
+          <aside className={ styles.containerCategories }>
+            <h3>Lista de categorias</h3>
+            {
+              categories.map((e) => (
+                <ListCategories
+                  name={ e.name }
+                  key={ e.id }
+                  id={ e.id }
+                  getId={ this.getId }
+                />
+              ))
+            }
+          </aside>
+          <section className={ styles.containerCards }>
+            {
+              products.map((product) => (
+                <Card
+                  key={ product.id }
+                  product={ product }
+                />
+              ))
+            }
+          </section>
         </section>
       </main>
     );
   }
 }
-
-Home.defaultProps = {
-  addToCart: () => {},
-};
-
-Home.propTypes = {
-  addToCart: PropTypes.func,
-};
 
 export default Home;
