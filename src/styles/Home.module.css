@@ -18,13 +18,18 @@
 
 .card {
   background-color: white;
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
   color: black;
   display: flex;
+  height: 570px;
   margin: 0 30px 40px 0;
   padding: 15px;
   text-decoration: none;
   width: 270px;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .card div {
