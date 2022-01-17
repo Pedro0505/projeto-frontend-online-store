@@ -6,7 +6,7 @@ import FormPay from './pages/FormPay';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
 import './styles/Main.css';
-import Header from './components/Header';
+import Profile from './pages/Profile';
 
 class App extends Component {
   constructor() {
@@ -126,7 +126,7 @@ class App extends Component {
             />) }
           />
           <Route path="/checkout" exact render={ () => <FormPay cart={ cart } /> } />
-          <Route path="/profile" exact component={ Header } />
+          <Route path="/profile" exact component={ Profile } />
           <Route
             path="/product-detail/:id"
             exact
