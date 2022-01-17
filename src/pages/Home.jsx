@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Search from '@material-ui/icons/Search';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Card from '../components/Card';
-import CartLength from '../components/CartLength';
+import Header from '../components/Header';
 import ListCategories from '../components/ListCategories';
 import * as api from '../services/api';
 
@@ -49,31 +46,13 @@ class Home extends Component {
 
   render() {
     const { products, categories } = this.state;
-    const { addToCart, totalQuantity } = this.props;
+    const { addToCart } = this.props;
     return (
       <main>
-        <header>
-          <input
-            data-testid="query-input"
-            type="text"
-            onChange={ this.handleChange }
-            placeholder="Digite algum termo de pesquisa"
-          />
-          <button
-            type="submit"
-            data-testid="query-button"
-            onClick={ this.handleSearch }
-          >
-            <Search />
-          </button>
-          <CartLength totalQuantity={ totalQuantity } />
-          <Link
-            to="/cart"
-            data-testid="shopping-cart-button"
-          >
-            <ShoppingCartIcon style={ { color: 'black' } } />
-          </Link>
-        </header>
+        <Header
+          handleChange={ this.handleChange }
+          handleSearch={ this.handleSearch }
+        />
         <aside>
           <h3>Lista de categorias</h3>
           {
@@ -109,7 +88,6 @@ Home.defaultProps = {
 
 Home.propTypes = {
   addToCart: PropTypes.func,
-  totalQuantity: PropTypes.number.isRequired,
 };
 
 export default Home;

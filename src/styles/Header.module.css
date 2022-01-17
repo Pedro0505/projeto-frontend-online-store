@@ -1,0 +1,46 @@
+:root {
+
+  --header-color: #189ab4;
+}
+
+.header {
+  align-items: center;
+  background-color: var(--header-color);
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  min-width: 97vw;
+}
+
+.header div {
+  align-items: center;
+  display: flex;
+  height: fit-content;
+}
+
+.profile, .cart {
+  color: black;
+  font-size: 15px;
+}
+
+.profile {
+  margin-left: 25px;
+}
+
+.cart {
+  margin-right: 25px;
+}
+
+.header div button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  height: 31px;
+  width: 33px;
+}
+
+.header div input {
+  padding: 7px;
+  width: 500px;
+}

@@ -18,7 +18,12 @@ class Login extends Component {
             <p>Senha</p>
             <input type="password" id="password" />
           </label>
-          <button type="submit">Entrar</button>
+          <button
+            onClick={ (event) => event.preventDefault() }
+            type="submit"
+          >
+            Entrar
+          </button>
         </form>
       </main>
     );
