@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
-import FormPay from './components/FormPay';
+import FormPay from './pages/FormPay';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import './styles/Main.css';
+import Profile from './pages/Profile';
 
 class App extends Component {
   constructor() {
@@ -18,6 +20,7 @@ class App extends Component {
   componentDidMount() {
     this.initialState();
     this.calculatorItens();
+    this.calculatorTotalPrice();
   }
 
   initialState = () => {
@@ -33,6 +36,15 @@ class App extends Component {
     this.setState({ totalQuantity: catchNumber });
   }
 
+  calculatorTotalPrice = () => {
+    const localCart = localStorage.getItem('cart');
+    const cart = localCart ? JSON.parse(localCart) : [];
+    const total = cart.map((e) => e.price * e.quantity)
+      .reduce((acc, cur) => acc + cur, 0);
+    const round = Math.round(total);
+    localStorage.setItem('total-price', JSON.stringify(round));
+  }
+
   removeCart = (product) => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     const itemFound = cart.find((item) => item.id === product.id);
@@ -40,6 +52,7 @@ class App extends Component {
     localStorage.setItem('cart', JSON.stringify(newCart));
     this.setState({ cart: newCart });
     this.calculatorItens();
+    this.calculatorTotalPrice();
   }
 
   decreaseCart = (product) => {
@@ -55,6 +68,7 @@ class App extends Component {
       }
     }
     this.calculatorItens();
+    this.calculatorTotalPrice();
   }
 
   addToCart = (product) => {
@@ -77,6 +91,7 @@ class App extends Component {
       this.setState({ cart: [...cart, product] });
     }
     this.calculatorItens();
+    this.calculatorTotalPrice();
   }
 
   render() {
@@ -111,6 +126,7 @@ class App extends Component {
             />) }
           />
           <Route path="/checkout" exact render={ () => <FormPay cart={ cart } /> } />
+          <Route path="/profile" exact component={ Profile } />
           <Route
             path="/product-detail/:id"
             exact

@@ -1,12 +1,9 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Search from '@material-ui/icons/Search';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Card from '../components/Card';
-import CartLength from '../components/CartLength';
+import Header from '../components/Header';
 import ListCategories from '../components/ListCategories';
 import * as api from '../services/api';
+import styles from '../styles/Home.module.css';
 
 class Home extends Component {
   constructor() {
@@ -49,67 +46,40 @@ class Home extends Component {
 
   render() {
     const { products, categories } = this.state;
-    const { addToCart, totalQuantity } = this.props;
     return (
       <main>
-        <header>
-          <input
-            data-testid="query-input"
-            type="text"
-            onChange={ this.handleChange }
-            placeholder="Digite algum termo de pesquisa"
-          />
-          <button
-            type="submit"
-            data-testid="query-button"
-            onClick={ this.handleSearch }
-          >
-            <Search />
-          </button>
-          <CartLength totalQuantity={ totalQuantity } />
-          <Link
-            to="/cart"
-            data-testid="shopping-cart-button"
-          >
-            <ShoppingCartIcon style={ { color: 'black' } } />
-          </Link>
-        </header>
-        <aside>
-          <h3>Lista de categorias</h3>
-          {
-            categories.map((e) => (
-              <ListCategories
-                name={ e.name }
-                key={ e.id }
-                id={ e.id }
-                getId={ this.getId }
-              />
-            ))
-          }
-        </aside>
-        <section>
-          {
-            products.map((product) => (
-              <Card
-                key={ product.id }
-                product={ product }
-                addToCart={ addToCart }
-              />
-            ))
-          }
+        <Header
+          handleChange={ this.handleChange }
+          handleSearch={ this.handleSearch }
+        />
+        <section className={ styles.containerHome }>
+          <aside className={ styles.containerCategories }>
+            <h3>Lista de categorias</h3>
+            {
+              categories.map((e) => (
+                <ListCategories
+                  name={ e.name }
+                  key={ e.id }
+                  id={ e.id }
+                  getId={ this.getId }
+                />
+              ))
+            }
+          </aside>
+          <section className={ styles.containerCards }>
+            {
+              products.map((product) => (
+                <Card
+                  key={ product.id }
+                  product={ product }
+                />
+              ))
+            }
+          </section>
         </section>
       </main>
     );
   }
 }
-
-Home.defaultProps = {
-  addToCart: () => {},
-};
-
-Home.propTypes = {
-  addToCart: PropTypes.func,
-  totalQuantity: PropTypes.number.isRequired,
-};
 
 export default Home;

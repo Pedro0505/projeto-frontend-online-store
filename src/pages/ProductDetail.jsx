@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import getById from '../services/getById';
 import Info from '../components/Info';
 import EvaluationForm from '../components/EvaluationForm';
 import ShowEvaluation from '../components/ShowEvaluation';
 import CartLength from '../components/CartLength';
+import Header from '../components/Header';
 
 class ProductDetail extends Component {
   constructor() {
@@ -63,6 +63,7 @@ class ProductDetail extends Component {
     const { match: { params: { id } }, addToCart, totalQuantity } = this.props;
     return (
       <div>
+        <Header />
         <CartLength totalQuantity={ totalQuantity } />
         {
           Array.isArray(details) && details.map((e) => (
@@ -77,17 +78,13 @@ class ProductDetail extends Component {
           Adicionar ao Carrinho
 
         </button>
-        <Link
-          to="/cart"
-          data-testid="shopping-cart-button"
-        >
-          Carrinho
-        </Link>
         <EvaluationForm id={ id } updateEvaluations={ this.updateEvaluations } />
-        { evaluations.map((evaluation, index) => (<ShowEvaluation
-          key={ index }
-          evaluation={ evaluation }
-        />)) }
+        { evaluations.map((evaluation, index) => (
+          <ShowEvaluation
+            key={ index }
+            evaluation={ evaluation }
+          />
+        )) }
       </div>
     );
   }
