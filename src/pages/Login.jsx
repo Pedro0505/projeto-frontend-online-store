@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
 import LoginImage from '../images/Login.svg';
 
@@ -18,12 +19,13 @@ class Login extends Component {
             <p>Senha</p>
             <input type="password" id="password" />
           </label>
-          <button
-            onClick={ (event) => event.preventDefault() }
-            type="submit"
-          >
-            Entrar
-          </button>
+          <Link to="/home" className={ styles.profile }>
+            <button
+              type="submit"
+            >
+              Entrar
+            </button>
+          </Link>
         </form>
       </main>
     );
